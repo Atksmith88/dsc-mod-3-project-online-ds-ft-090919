@@ -48,6 +48,7 @@ Initial Data:
 ![](Files/Q1/BoxPlot.png)
     
 Sample Data:
+
 ![](Files/Q1/SampleDistPlot.png)
 </details>
 
@@ -85,11 +86,13 @@ Based on the Effect Sizes above, the largest difference in quantity ordered is a
 <details open><summary><b>Hypothesis 1:</b></summary>
 <b>H0</b>: mean_order_value_i = mean_order_value_j for each pair of employees<br>
 <b>HA</b>: mean_order_value_i != mean_order_value_j for each pair of employees<br>
+    
 </details>
 
 <details open><summary><b>Hypothesis 2:</b></summary>
 <b>H0</b>: mean_order_value_british_isles = mean_order_value_north_america<br>
 <b>HA</b>: mean_order_value_british_isles != mean_order_value_north_america<br>
+    
 </details>
 
 <details><summary><b>Gathering Data:</b></summary>
@@ -109,6 +112,7 @@ Based on the Effect Sizes above, the largest difference in quantity ordered is a
            GROUP BY 1
            """
 ```
+
 ![](Files/Q2/Q2Data.PNG)
 
 ```
@@ -137,13 +141,17 @@ Region Data:
 ![](Files/Q2/RegionDist.png)
 
 Region Sample Means:
+
 ![](Files/Q2/RegionSampleDist.png)
     
 Employee Data:
+
 ![](Files/Q2/EmpDist.png)
 
 Employee Sample Means:
+
 ![](Files/Q2/EmpSampleDist.png)
+
 </details>
 
 <details><summary><b>Testing:</b></summary>
@@ -153,6 +161,7 @@ Employee Sample Means:
 tk = smc.MultiComparison(samp_df['SampleOrderTotalMean'], samp_df['EmployeeID'])
 result = tk.tukeyhsd()
 ```
+
 ![](Files/Q2/TukeyResults.PNG)
 
 <b>Effect Size</b>:
@@ -170,6 +179,7 @@ Effect Size (d) for EmployeeID 6 vs EmployeeID 5: 2.6168286381625485<br>
 Effect Size (d) for EmployeeID 6 vs EmployeeID 7: 3.040556390925239<br>
 Effect Size (d) for EmployeeID 6 vs EmployeeID 8: 0.9255674545285751<br>
 Effect Size (d) for EmployeeID 6 vs EmployeeID 9: 2.3518656690053765<br>
+
 </details>
 
 <details open><summary><b>Conclusion:</b></summary>
@@ -178,6 +188,7 @@ Looking at both the original dataset and the sample dataset, it's evident that t
 My recommendation, based on the original dataset, would be to have the employees with the IDs of 6 and 8 train with the employees with the IDs of 5 and 9, as they would seemingly provide the best knowledge based on their order values.
 
 Oddly enough, it does appear that both the worst and the best reps are from the British Isles office, implying that the North American office, while not outstanding, is very consistent in their sales techniques. They may also be able to learn a thing or two from the top reps from the British Isles.
+
 </details>
 
 <a id="question_3"></a>
@@ -186,6 +197,7 @@ Oddly enough, it does appear that both the worst and the best reps are from the 
 <details open><summary><b>Hypothesis:</b></summary>
 <b>H0</b>: mean_order_number_europe = mean_order_number_americas<br>
 <b>HA</b>: mean_order_number_europe != mean_order_number_americas<br>
+    
 </details>
 
 <details><summary><b>Gathering Data:</b></summary>
@@ -199,7 +211,9 @@ query = """SELECT COUNT(DISTINCT c.Id) as NumCustomers, COUNT(DISTINCT o.ID) as 
            GROUP BY 3
            """
 ```
+
 ![](Files/Q3/Q3Data.PNG)
+
 </details>
 
 <details open><summary><b>Visualizations:</b></summary>
@@ -208,7 +222,9 @@ Original Data:
 ![](Files/Q3/BoxPlot.png)
 
 Sample Means:
+
 ![](Files/Q3/SampleDist.png)
+
 </details>
 
 <details><summary><b>Testing:</b></summary>
@@ -230,12 +246,14 @@ Effect Size (d) for Customer Region Sample Set: 0.9654753037865513
 tt_ind_solve_power(effect_size=d, nobs1=sample_size, alpha=a)
 ```
 0.8449808569501598
+
 </details>
 
 <details open><summary><b>Conclusion:</b></summary>
 After fully testing the sample mean distributions, it does appear that there is a statistically significant difference in number of orders based on customer's region, and with a power of 84.5% we're fairly confident that we are correctly rejecting our Null Hypothesis.
 
 Based on the results and an effect size of .97, I would recommend focusing our sales to customers in the European region, as there is a higher chance of generating a sale, and potentially having a repeat customer as well as the average number of orders per customer is higher for Europe, specifically in Northern and Western Europe.
+
 </details>
 
 <a id="question_4"></a>
@@ -244,6 +262,7 @@ Based on the results and an effect size of .97, I would recommend focusing our s
 <details open><summary><b>Hypothesis:</b></summary>
 <b>H0</b>: discontinued_mean_order_value = not_discontinued_mean_order_value<br>
 <b>HA</b>: discontinued_mean_order_value != not_discontinued_mean_order_value<br>
+    
 </details>
 
 <details><summary><b>Gathering Data:</b></summary>
@@ -260,7 +279,9 @@ query = """SELECT COUNT(DISTINCT OrderID), ROUND(AVG(OrderTotal), 2), MAX(OrderT
            GROUP BY 5
            """
 ```
+
 ![](Files/Q4/Q4Data.PNG)
+
 </details>
 
 <details open><summary><b>Visualizations:</b></summary>
@@ -269,7 +290,9 @@ Original Data:
 ![](Files/Q4/BoxPlot.png)    
 
 Sample Means:
+
 ![](Files/Q4/SampDist.png)
+
 </details>
 
 <details><summary><b>Testing:</b></summary>
@@ -291,12 +314,14 @@ Effect Size (d) for Discontinued Item Sample Set: 4.053706846866571
 tt_ind_solve_power(effect_size=d, nobs1=sample_size, alpha=a)
 ```
 1.0
+
 </details>
 
 <details open><summary><b>Conclusion:</b></summary>
 After fully testing the sample mean distributions, it does appear that there is a statistically significant difference in order value if that order contains a discontinued item, and with a power of 100% we're extremely confident that we are correctly rejecting our Null Hypothesis.
 
 Based on the results and an effect size of 4.05, I would recommend an investigation into our discontinued items and see if it's possible to bring any of them back, as they have a very large impact on the amount of revenue generated per order.
+
 </details>
 
 ## Conclusion & Future Work
