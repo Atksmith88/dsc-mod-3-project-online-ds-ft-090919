@@ -39,7 +39,7 @@ query = """SELECT Discount, ROUND(avg(Quantity),2) AS AvgQuantity,
            GROUP BY Discount
            """
 ```
-![](Files\Q1\Q1Data.jpg)
+![](Files/Q1/Q1Data.jpg)
 </details>
 
 <details><summary><b>Visualizations:</b></summary>
